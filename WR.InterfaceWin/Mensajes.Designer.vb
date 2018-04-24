@@ -26,6 +26,8 @@ Partial Class Mensajes
         Dim splitLista As System.Windows.Forms.SplitContainer
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim lblTags As System.Windows.Forms.Label
+        Dim lblArchivos As System.Windows.Forms.Label
         Dim FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -35,26 +37,32 @@ Partial Class Mensajes
         Me.TituloDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MensajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelBusqueda = New System.Windows.Forms.Panel()
-        Me.btnBuscar = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.txtBuscar = New System.Windows.Forms.TextBox()
+        Me.cbTipo = New System.Windows.Forms.ComboBox()
+        Me.btnBuscar = New System.Windows.Forms.Button()
+        Me.panelDetalle = New System.Windows.Forms.Panel()
         Me.txtMensaje = New System.Windows.Forms.RichTextBox()
-        Me.txtTags = New System.Windows.Forms.TextBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.panelArchivos = New System.Windows.Forms.Panel()
-        Me.lblArchivos = New System.Windows.Forms.Label()
         Me.btnBorrarArchivo = New System.Windows.Forms.Button()
         Me.btnAgregarArchivo = New System.Windows.Forms.Button()
         Me.dgvArchivos = New System.Windows.Forms.DataGridView()
-        Me.ImagenDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.NombreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TamanoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RutaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ListaArchivosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.NombreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImagenDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.TamanoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ArchivosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtTitulo = New System.Windows.Forms.TextBox()
         Me.btnBorrar = New System.Windows.Forms.Button()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.btnEditar = New System.Windows.Forms.Button()
         Me.btnMas = New System.Windows.Forms.Button()
+        Me.tags = New WR.InterfaceWin.Etiquetas()
+        Me.TagsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         splitLista = New System.Windows.Forms.SplitContainer()
+        lblTags = New System.Windows.Forms.Label()
+        lblArchivos = New System.Windows.Forms.Label()
         FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         panelTop = New System.Windows.Forms.Panel()
         flpControles = New System.Windows.Forms.FlowLayoutPanel()
@@ -65,12 +73,16 @@ Partial Class Mensajes
         CType(Me.dgvMensajes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MensajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelBusqueda.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.panelDetalle.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.panelArchivos.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         CType(Me.dgvArchivos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ListaArchivosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ArchivosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         panelTop.SuspendLayout()
         flpControles.SuspendLayout()
+        CType(Me.TagsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'splitLista
@@ -90,14 +102,14 @@ Partial Class Mensajes
         'splitLista.Panel2
         '
         splitLista.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        splitLista.Panel2.Controls.Add(Me.txtMensaje)
-        splitLista.Panel2.Controls.Add(Me.txtTags)
+        splitLista.Panel2.Controls.Add(Me.panelDetalle)
+        splitLista.Panel2.Controls.Add(Me.Panel1)
         splitLista.Panel2.Controls.Add(Me.panelArchivos)
         splitLista.Panel2.Controls.Add(Me.dgvArchivos)
         splitLista.Panel2.Controls.Add(panelTop)
         splitLista.Panel2.Padding = New System.Windows.Forms.Padding(0, 0, 0, 10)
         splitLista.Size = New System.Drawing.Size(808, 495)
-        splitLista.SplitterDistance = 214
+        splitLista.SplitterDistance = 270
         splitLista.SplitterWidth = 7
         splitLista.TabIndex = 1
         '
@@ -125,7 +137,7 @@ Partial Class Mensajes
         Me.dgvMensajes.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgvMensajes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvMensajes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.dgvMensajes.Location = New System.Drawing.Point(0, 30)
+        Me.dgvMensajes.Location = New System.Drawing.Point(0, 35)
         Me.dgvMensajes.MultiSelect = False
         Me.dgvMensajes.Name = "dgvMensajes"
         Me.dgvMensajes.ReadOnly = True
@@ -139,7 +151,7 @@ Partial Class Mensajes
         Me.dgvMensajes.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvMensajes.RowHeadersVisible = False
         Me.dgvMensajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvMensajes.Size = New System.Drawing.Size(214, 455)
+        Me.dgvMensajes.Size = New System.Drawing.Size(270, 450)
         Me.dgvMensajes.TabIndex = 1
         '
         'TituloDataGridViewTextBoxColumn
@@ -156,15 +168,53 @@ Partial Class Mensajes
         '
         'panelBusqueda
         '
+        Me.panelBusqueda.Controls.Add(Me.Panel2)
+        Me.panelBusqueda.Controls.Add(Me.cbTipo)
         Me.panelBusqueda.Controls.Add(Me.btnBuscar)
-        Me.panelBusqueda.Controls.Add(Me.txtBuscar)
         Me.panelBusqueda.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelBusqueda.Location = New System.Drawing.Point(0, 5)
         Me.panelBusqueda.Name = "panelBusqueda"
-        Me.panelBusqueda.Padding = New System.Windows.Forms.Padding(3, 5, 0, 5)
-        Me.panelBusqueda.Size = New System.Drawing.Size(214, 25)
+        Me.panelBusqueda.Padding = New System.Windows.Forms.Padding(3, 3, 0, 3)
+        Me.panelBusqueda.Size = New System.Drawing.Size(270, 30)
         Me.panelBusqueda.TabIndex = 0
-        Me.panelBusqueda.Visible = False
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.Controls.Add(Me.txtBuscar)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(100, 3)
+        Me.Panel2.MaximumSize = New System.Drawing.Size(0, 24)
+        Me.Panel2.MinimumSize = New System.Drawing.Size(0, 24)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.Panel2.Size = New System.Drawing.Size(0, 24)
+        Me.Panel2.TabIndex = 9
+        '
+        'txtBuscar
+        '
+        Me.txtBuscar.BackColor = System.Drawing.SystemColors.Window
+        Me.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtBuscar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBuscar.Location = New System.Drawing.Point(0, 5)
+        Me.txtBuscar.Name = "txtBuscar"
+        Me.txtBuscar.Size = New System.Drawing.Size(150, 15)
+        Me.txtBuscar.TabIndex = 0
+        '
+        'cbTipo
+        '
+        Me.cbTipo.Dock = System.Windows.Forms.DockStyle.Left
+        Me.cbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbTipo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbTipo.FormattingEnabled = True
+        Me.cbTipo.Items.AddRange(New Object() {"Titulo", "Descripcion", "Archivos", "Tags"})
+        Me.cbTipo.Location = New System.Drawing.Point(3, 3)
+        Me.cbTipo.Margin = New System.Windows.Forms.Padding(0)
+        Me.cbTipo.Name = "cbTipo"
+        Me.cbTipo.Size = New System.Drawing.Size(97, 24)
+        Me.cbTipo.TabIndex = 8
         '
         'btnBuscar
         '
@@ -176,77 +226,84 @@ Partial Class Mensajes
         Me.btnBuscar.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnBuscar.FlatAppearance.BorderSize = 0
         Me.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBuscar.Location = New System.Drawing.Point(199, 5)
+        Me.btnBuscar.Location = New System.Drawing.Point(250, 3)
         Me.btnBuscar.Margin = New System.Windows.Forms.Padding(0)
         Me.btnBuscar.Name = "btnBuscar"
-        Me.btnBuscar.Size = New System.Drawing.Size(15, 15)
+        Me.btnBuscar.Size = New System.Drawing.Size(20, 24)
         Me.btnBuscar.TabIndex = 7
         Me.btnBuscar.UseVisualStyleBackColor = False
         '
-        'txtBuscar
+        'panelDetalle
         '
-        Me.txtBuscar.BackColor = System.Drawing.SystemColors.Window
-        Me.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtBuscar.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtBuscar.Location = New System.Drawing.Point(3, 5)
-        Me.txtBuscar.Name = "txtBuscar"
-        Me.txtBuscar.Size = New System.Drawing.Size(211, 15)
-        Me.txtBuscar.TabIndex = 0
+        Me.panelDetalle.Controls.Add(Me.txtMensaje)
+        Me.panelDetalle.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panelDetalle.Location = New System.Drawing.Point(0, 30)
+        Me.panelDetalle.Name = "panelDetalle"
+        Me.panelDetalle.Padding = New System.Windows.Forms.Padding(3)
+        Me.panelDetalle.Size = New System.Drawing.Size(531, 338)
+        Me.panelDetalle.TabIndex = 12
         '
         'txtMensaje
         '
         Me.txtMensaje.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
         Me.txtMensaje.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtMensaje.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.MensajeBindingSource, "Contenido", True))
+        Me.txtMensaje.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.MensajeBindingSource, "Descripcion", True))
         Me.txtMensaje.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtMensaje.Location = New System.Drawing.Point(0, 30)
+        Me.txtMensaje.Location = New System.Drawing.Point(3, 3)
         Me.txtMensaje.Name = "txtMensaje"
         Me.txtMensaje.ReadOnly = True
         Me.txtMensaje.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
-        Me.txtMensaje.Size = New System.Drawing.Size(587, 347)
+        Me.txtMensaje.Size = New System.Drawing.Size(525, 332)
         Me.txtMensaje.TabIndex = 8
         Me.txtMensaje.Text = ""
         '
-        'txtTags
+        'Panel1
         '
-        Me.txtTags.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        Me.txtTags.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtTags.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.MensajeBindingSource, "Tags", True))
-        Me.txtTags.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.txtTags.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
-        Me.txtTags.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.txtTags.Location = New System.Drawing.Point(0, 377)
-        Me.txtTags.Name = "txtTags"
-        Me.txtTags.ReadOnly = True
-        Me.txtTags.ShortcutsEnabled = False
-        Me.txtTags.Size = New System.Drawing.Size(587, 13)
-        Me.txtTags.TabIndex = 8
+        Me.Panel1.Controls.Add(Me.tags)
+        Me.Panel1.Controls.Add(lblTags)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel1.Location = New System.Drawing.Point(0, 368)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Padding = New System.Windows.Forms.Padding(10, 3, 10, 3)
+        Me.Panel1.Size = New System.Drawing.Size(531, 22)
+        Me.Panel1.TabIndex = 11
+        '
+        'lblTags
+        '
+        lblTags.AutoSize = True
+        lblTags.Dock = System.Windows.Forms.DockStyle.Left
+        lblTags.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        lblTags.ForeColor = System.Drawing.Color.FromArgb(CType(CType(87, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(153, Byte), Integer))
+        lblTags.Location = New System.Drawing.Point(10, 3)
+        lblTags.Name = "lblTags"
+        lblTags.Size = New System.Drawing.Size(44, 16)
+        lblTags.TabIndex = 9
+        lblTags.Text = "Tags"
         '
         'panelArchivos
         '
         Me.panelArchivos.AutoSize = True
-        Me.panelArchivos.Controls.Add(Me.lblArchivos)
+        Me.panelArchivos.Controls.Add(lblArchivos)
         Me.panelArchivos.Controls.Add(FlowLayoutPanel1)
         Me.panelArchivos.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.panelArchivos.Location = New System.Drawing.Point(0, 390)
         Me.panelArchivos.Name = "panelArchivos"
         Me.panelArchivos.Padding = New System.Windows.Forms.Padding(10, 3, 10, 3)
-        Me.panelArchivos.Size = New System.Drawing.Size(587, 22)
+        Me.panelArchivos.Size = New System.Drawing.Size(531, 22)
         Me.panelArchivos.TabIndex = 10
         Me.panelArchivos.Visible = False
         '
         'lblArchivos
         '
-        Me.lblArchivos.AutoSize = True
-        Me.lblArchivos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblArchivos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblArchivos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(87, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.lblArchivos.Location = New System.Drawing.Point(10, 3)
-        Me.lblArchivos.Name = "lblArchivos"
-        Me.lblArchivos.Size = New System.Drawing.Size(69, 16)
-        Me.lblArchivos.TabIndex = 8
-        Me.lblArchivos.Text = "Archivos"
+        lblArchivos.AutoSize = True
+        lblArchivos.Dock = System.Windows.Forms.DockStyle.Fill
+        lblArchivos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        lblArchivos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(87, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(153, Byte), Integer))
+        lblArchivos.Location = New System.Drawing.Point(10, 3)
+        lblArchivos.Name = "lblArchivos"
+        lblArchivos.Size = New System.Drawing.Size(68, 16)
+        lblArchivos.TabIndex = 8
+        lblArchivos.Text = "Archivos"
         '
         'FlowLayoutPanel1
         '
@@ -255,7 +312,7 @@ Partial Class Mensajes
         FlowLayoutPanel1.Controls.Add(Me.btnAgregarArchivo)
         FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right
         FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        FlowLayoutPanel1.Location = New System.Drawing.Point(542, 3)
+        FlowLayoutPanel1.Location = New System.Drawing.Point(486, 3)
         FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         FlowLayoutPanel1.Size = New System.Drawing.Size(35, 16)
         FlowLayoutPanel1.TabIndex = 7
@@ -304,8 +361,8 @@ Partial Class Mensajes
         Me.dgvArchivos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dgvArchivos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvArchivos.ColumnHeadersVisible = False
-        Me.dgvArchivos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ImagenDataGridViewImageColumn, Me.NombreDataGridViewTextBoxColumn, Me.TamanoDataGridViewTextBoxColumn, Me.RutaDataGridViewTextBoxColumn})
-        Me.dgvArchivos.DataSource = Me.ListaArchivosBindingSource
+        Me.dgvArchivos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RutaDataGridViewTextBoxColumn, Me.NombreDataGridViewTextBoxColumn, Me.ImagenDataGridViewImageColumn, Me.TamanoDataGridViewTextBoxColumn})
+        Me.dgvArchivos.DataSource = Me.ArchivosBindingSource
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -330,34 +387,8 @@ Partial Class Mensajes
         Me.dgvArchivos.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvArchivos.RowHeadersVisible = False
         Me.dgvArchivos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvArchivos.Size = New System.Drawing.Size(587, 73)
+        Me.dgvArchivos.Size = New System.Drawing.Size(531, 73)
         Me.dgvArchivos.TabIndex = 10
-        '
-        'ImagenDataGridViewImageColumn
-        '
-        Me.ImagenDataGridViewImageColumn.DataPropertyName = "Imagen"
-        Me.ImagenDataGridViewImageColumn.HeaderText = "Imagen"
-        Me.ImagenDataGridViewImageColumn.MinimumWidth = 30
-        Me.ImagenDataGridViewImageColumn.Name = "ImagenDataGridViewImageColumn"
-        Me.ImagenDataGridViewImageColumn.ReadOnly = True
-        Me.ImagenDataGridViewImageColumn.Width = 30
-        '
-        'NombreDataGridViewTextBoxColumn
-        '
-        Me.NombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.NombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre"
-        Me.NombreDataGridViewTextBoxColumn.HeaderText = "Nombre"
-        Me.NombreDataGridViewTextBoxColumn.Name = "NombreDataGridViewTextBoxColumn"
-        Me.NombreDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'TamanoDataGridViewTextBoxColumn
-        '
-        Me.TamanoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.TamanoDataGridViewTextBoxColumn.DataPropertyName = "Tamano"
-        Me.TamanoDataGridViewTextBoxColumn.HeaderText = "Tamano"
-        Me.TamanoDataGridViewTextBoxColumn.Name = "TamanoDataGridViewTextBoxColumn"
-        Me.TamanoDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TamanoDataGridViewTextBoxColumn.Width = 5
         '
         'RutaDataGridViewTextBoxColumn
         '
@@ -365,13 +396,36 @@ Partial Class Mensajes
         Me.RutaDataGridViewTextBoxColumn.HeaderText = "Ruta"
         Me.RutaDataGridViewTextBoxColumn.Name = "RutaDataGridViewTextBoxColumn"
         Me.RutaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.RutaDataGridViewTextBoxColumn.Visible = False
         Me.RutaDataGridViewTextBoxColumn.Width = 5
         '
-        'ListaArchivosBindingSource
+        'NombreDataGridViewTextBoxColumn
         '
-        Me.ListaArchivosBindingSource.DataMember = "ListaArchivos"
-        Me.ListaArchivosBindingSource.DataSource = Me.MensajeBindingSource
+        Me.NombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre"
+        Me.NombreDataGridViewTextBoxColumn.HeaderText = "Nombre"
+        Me.NombreDataGridViewTextBoxColumn.Name = "NombreDataGridViewTextBoxColumn"
+        Me.NombreDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NombreDataGridViewTextBoxColumn.Width = 5
+        '
+        'ImagenDataGridViewImageColumn
+        '
+        Me.ImagenDataGridViewImageColumn.DataPropertyName = "Imagen"
+        Me.ImagenDataGridViewImageColumn.HeaderText = "Imagen"
+        Me.ImagenDataGridViewImageColumn.Name = "ImagenDataGridViewImageColumn"
+        Me.ImagenDataGridViewImageColumn.ReadOnly = True
+        Me.ImagenDataGridViewImageColumn.Width = 5
+        '
+        'TamanoDataGridViewTextBoxColumn
+        '
+        Me.TamanoDataGridViewTextBoxColumn.DataPropertyName = "Tamano"
+        Me.TamanoDataGridViewTextBoxColumn.HeaderText = "Tamano"
+        Me.TamanoDataGridViewTextBoxColumn.Name = "TamanoDataGridViewTextBoxColumn"
+        Me.TamanoDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TamanoDataGridViewTextBoxColumn.Width = 5
+        '
+        'ArchivosBindingSource
+        '
+        Me.ArchivosBindingSource.DataMember = "Archivos"
+        Me.ArchivosBindingSource.DataSource = Me.MensajeBindingSource
         '
         'panelTop
         '
@@ -381,7 +435,7 @@ Partial Class Mensajes
         panelTop.Location = New System.Drawing.Point(0, 0)
         panelTop.Name = "panelTop"
         panelTop.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
-        panelTop.Size = New System.Drawing.Size(587, 30)
+        panelTop.Size = New System.Drawing.Size(531, 30)
         panelTop.TabIndex = 9
         '
         'txtTitulo
@@ -396,7 +450,7 @@ Partial Class Mensajes
         Me.txtTitulo.Name = "txtTitulo"
         Me.txtTitulo.ReadOnly = True
         Me.txtTitulo.ShortcutsEnabled = False
-        Me.txtTitulo.Size = New System.Drawing.Size(462, 15)
+        Me.txtTitulo.Size = New System.Drawing.Size(406, 15)
         Me.txtTitulo.TabIndex = 4
         Me.txtTitulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -409,7 +463,7 @@ Partial Class Mensajes
         flpControles.Controls.Add(Me.btnMas)
         flpControles.Dock = System.Windows.Forms.DockStyle.Right
         flpControles.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        flpControles.Location = New System.Drawing.Point(472, 5)
+        flpControles.Location = New System.Drawing.Point(416, 5)
         flpControles.Name = "flpControles"
         flpControles.Size = New System.Drawing.Size(105, 20)
         flpControles.TabIndex = 7
@@ -477,6 +531,22 @@ Partial Class Mensajes
         Me.btnMas.TabIndex = 8
         Me.btnMas.UseVisualStyleBackColor = True
         '
+        'tags
+        '
+        Me.tags.AutoSize = True
+        Me.tags.DataSource = Me.TagsBindingSource
+        Me.tags.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tags.Editable = True
+        Me.tags.Location = New System.Drawing.Point(54, 3)
+        Me.tags.Name = "tags"
+        Me.tags.Size = New System.Drawing.Size(467, 16)
+        Me.tags.TabIndex = 10
+        '
+        'TagsBindingSource
+        '
+        Me.TagsBindingSource.DataMember = "Tags"
+        Me.TagsBindingSource.DataSource = Me.MensajeBindingSource
+        '
         'Mensajes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -493,14 +563,20 @@ Partial Class Mensajes
         CType(Me.MensajeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelBusqueda.ResumeLayout(False)
         Me.panelBusqueda.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        Me.panelDetalle.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.panelArchivos.ResumeLayout(False)
         Me.panelArchivos.PerformLayout()
         FlowLayoutPanel1.ResumeLayout(False)
         CType(Me.dgvArchivos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ListaArchivosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ArchivosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         panelTop.ResumeLayout(False)
         panelTop.PerformLayout()
         flpControles.ResumeLayout(False)
+        CType(Me.TagsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -514,20 +590,24 @@ Partial Class Mensajes
     Private WithEvents btnBuscar As Button
     Friend WithEvents dgvMensajes As DataGridView
     Private WithEvents btnMas As Button
-    Private WithEvents txtTags As TextBox
     Friend WithEvents dgvArchivos As DataGridView
-    Friend WithEvents MensajeBindingSource As BindingSource
-    Friend WithEvents TituloDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents lblArchivos As Label
     Private WithEvents btnBorrarArchivo As Button
     Private WithEvents btnAgregarArchivo As Button
     Friend WithEvents PathDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents SizeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ImageDataGridViewImageColumn As DataGridViewImageColumn
-    Friend WithEvents ListaArchivosBindingSource As BindingSource
     Friend WithEvents panelArchivos As Panel
-    Friend WithEvents ImagenDataGridViewImageColumn As DataGridViewImageColumn
-    Friend WithEvents NombreDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TamanoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents tags As Etiquetas
+    Friend WithEvents panelDetalle As Panel
+    Friend WithEvents cbTipo As ComboBox
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents MensajeBindingSource As BindingSource
     Friend WithEvents RutaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NombreDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ImagenDataGridViewImageColumn As DataGridViewImageColumn
+    Friend WithEvents TamanoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ArchivosBindingSource As BindingSource
+    Friend WithEvents TituloDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TagsBindingSource As BindingSource
 End Class

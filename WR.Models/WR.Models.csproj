@@ -46,16 +46,16 @@
   <ItemGroup>
     <Compile Include="ArchivoModel.cs" />
     <Compile Include="BibliaModel.cs" />
-    <Compile Include="ColeccionModel.cs" />
     <Compile Include="ConfigModel.cs" />
+    <Compile Include="ContactoModel.cs" />
     <Compile Include="DriveModel.cs" />
     <Compile Include="IglesiaModel.cs" />
-    <Compile Include="LocalFilesModel.cs" />
+    <Compile Include="ListasModel.cs" />
     <Compile Include="MensajeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="UML.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

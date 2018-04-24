@@ -45,22 +45,10 @@ Partial Class Contactos
         Me.txtBuscar = New System.Windows.Forms.TextBox()
         Me.spliterMensajes = New System.Windows.Forms.SplitContainer()
         Me.dgvMensajesCargados = New System.Windows.Forms.DataGridView()
-        Me.Titulo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TituloDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ContenidoDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TagsDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PasajesDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MensajesCargadosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelMensajes = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.dgvMensajes = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TituloDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ContenidoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TagsDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PasajesDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MensajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btnBorrarMensajes = New System.Windows.Forms.Button()
@@ -83,6 +71,8 @@ Partial Class Contactos
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.btnEditar = New System.Windows.Forms.Button()
         Me.btnMas = New System.Windows.Forms.Button()
+        Me.Titulo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         splitLista = New System.Windows.Forms.SplitContainer()
         Label2 = New System.Windows.Forms.Label()
         Label1 = New System.Windows.Forms.Label()
@@ -269,7 +259,7 @@ Partial Class Contactos
         Me.dgvMensajesCargados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dgvMensajesCargados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvMensajesCargados.ColumnHeadersVisible = False
-        Me.dgvMensajesCargados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Titulo, Me.IdDataGridViewTextBoxColumn1, Me.TituloDataGridViewTextBoxColumn1, Me.ContenidoDataGridViewTextBoxColumn1, Me.TagsDataGridViewTextBoxColumn1, Me.PasajesDataGridViewTextBoxColumn1})
+        Me.dgvMensajesCargados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Titulo})
         Me.dgvMensajesCargados.DataSource = Me.MensajesCargadosBindingSource
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
@@ -296,54 +286,6 @@ Partial Class Contactos
         Me.dgvMensajesCargados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvMensajesCargados.Size = New System.Drawing.Size(285, 367)
         Me.dgvMensajesCargados.TabIndex = 12
-        '
-        'Titulo
-        '
-        Me.Titulo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Titulo.DataPropertyName = "Titulo"
-        Me.Titulo.HeaderText = "Titulo"
-        Me.Titulo.Name = "Titulo"
-        Me.Titulo.ReadOnly = True
-        '
-        'IdDataGridViewTextBoxColumn1
-        '
-        Me.IdDataGridViewTextBoxColumn1.DataPropertyName = "Id"
-        Me.IdDataGridViewTextBoxColumn1.HeaderText = "Id"
-        Me.IdDataGridViewTextBoxColumn1.Name = "IdDataGridViewTextBoxColumn1"
-        Me.IdDataGridViewTextBoxColumn1.ReadOnly = True
-        Me.IdDataGridViewTextBoxColumn1.Width = 5
-        '
-        'TituloDataGridViewTextBoxColumn1
-        '
-        Me.TituloDataGridViewTextBoxColumn1.DataPropertyName = "Titulo"
-        Me.TituloDataGridViewTextBoxColumn1.HeaderText = "Titulo"
-        Me.TituloDataGridViewTextBoxColumn1.Name = "TituloDataGridViewTextBoxColumn1"
-        Me.TituloDataGridViewTextBoxColumn1.ReadOnly = True
-        Me.TituloDataGridViewTextBoxColumn1.Width = 5
-        '
-        'ContenidoDataGridViewTextBoxColumn1
-        '
-        Me.ContenidoDataGridViewTextBoxColumn1.DataPropertyName = "Contenido"
-        Me.ContenidoDataGridViewTextBoxColumn1.HeaderText = "Contenido"
-        Me.ContenidoDataGridViewTextBoxColumn1.Name = "ContenidoDataGridViewTextBoxColumn1"
-        Me.ContenidoDataGridViewTextBoxColumn1.ReadOnly = True
-        Me.ContenidoDataGridViewTextBoxColumn1.Width = 5
-        '
-        'TagsDataGridViewTextBoxColumn1
-        '
-        Me.TagsDataGridViewTextBoxColumn1.DataPropertyName = "Tags"
-        Me.TagsDataGridViewTextBoxColumn1.HeaderText = "Tags"
-        Me.TagsDataGridViewTextBoxColumn1.Name = "TagsDataGridViewTextBoxColumn1"
-        Me.TagsDataGridViewTextBoxColumn1.ReadOnly = True
-        Me.TagsDataGridViewTextBoxColumn1.Width = 5
-        '
-        'PasajesDataGridViewTextBoxColumn1
-        '
-        Me.PasajesDataGridViewTextBoxColumn1.DataPropertyName = "Pasajes"
-        Me.PasajesDataGridViewTextBoxColumn1.HeaderText = "Pasajes"
-        Me.PasajesDataGridViewTextBoxColumn1.Name = "PasajesDataGridViewTextBoxColumn1"
-        Me.PasajesDataGridViewTextBoxColumn1.ReadOnly = True
-        Me.PasajesDataGridViewTextBoxColumn1.Width = 5
         '
         'MensajesCargadosBindingSource
         '
@@ -386,7 +328,7 @@ Partial Class Contactos
         Me.dgvMensajes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dgvMensajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvMensajes.ColumnHeadersVisible = False
-        Me.dgvMensajes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.IdDataGridViewTextBoxColumn, Me.TituloDataGridViewTextBoxColumn, Me.ContenidoDataGridViewTextBoxColumn, Me.TagsDataGridViewTextBoxColumn, Me.PasajesDataGridViewTextBoxColumn})
+        Me.dgvMensajes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1})
         Me.dgvMensajes.DataSource = Me.MensajeBindingSource
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
@@ -414,54 +356,6 @@ Partial Class Contactos
         Me.dgvMensajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvMensajes.Size = New System.Drawing.Size(260, 389)
         Me.dgvMensajes.TabIndex = 15
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "Titulo"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Titulo"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'IdDataGridViewTextBoxColumn
-        '
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
-        Me.IdDataGridViewTextBoxColumn.Width = 5
-        '
-        'TituloDataGridViewTextBoxColumn
-        '
-        Me.TituloDataGridViewTextBoxColumn.DataPropertyName = "Titulo"
-        Me.TituloDataGridViewTextBoxColumn.HeaderText = "Titulo"
-        Me.TituloDataGridViewTextBoxColumn.Name = "TituloDataGridViewTextBoxColumn"
-        Me.TituloDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TituloDataGridViewTextBoxColumn.Width = 5
-        '
-        'ContenidoDataGridViewTextBoxColumn
-        '
-        Me.ContenidoDataGridViewTextBoxColumn.DataPropertyName = "Contenido"
-        Me.ContenidoDataGridViewTextBoxColumn.HeaderText = "Contenido"
-        Me.ContenidoDataGridViewTextBoxColumn.Name = "ContenidoDataGridViewTextBoxColumn"
-        Me.ContenidoDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ContenidoDataGridViewTextBoxColumn.Width = 5
-        '
-        'TagsDataGridViewTextBoxColumn
-        '
-        Me.TagsDataGridViewTextBoxColumn.DataPropertyName = "Tags"
-        Me.TagsDataGridViewTextBoxColumn.HeaderText = "Tags"
-        Me.TagsDataGridViewTextBoxColumn.Name = "TagsDataGridViewTextBoxColumn"
-        Me.TagsDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TagsDataGridViewTextBoxColumn.Width = 5
-        '
-        'PasajesDataGridViewTextBoxColumn
-        '
-        Me.PasajesDataGridViewTextBoxColumn.DataPropertyName = "Pasajes"
-        Me.PasajesDataGridViewTextBoxColumn.HeaderText = "Pasajes"
-        Me.PasajesDataGridViewTextBoxColumn.Name = "PasajesDataGridViewTextBoxColumn"
-        Me.PasajesDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PasajesDataGridViewTextBoxColumn.Width = 5
         '
         'MensajeBindingSource
         '
@@ -849,6 +743,22 @@ Partial Class Contactos
         Me.btnMas.TabIndex = 8
         Me.btnMas.UseVisualStyleBackColor = True
         '
+        'Titulo
+        '
+        Me.Titulo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Titulo.DataPropertyName = "Titulo"
+        Me.Titulo.HeaderText = "Titulo"
+        Me.Titulo.Name = "Titulo"
+        Me.Titulo.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "Titulo"
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Titulo"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        '
         'Contactos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -925,17 +835,9 @@ Partial Class Contactos
     Friend WithEvents EmailDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents NumeroDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Private WithEvents btnBorrarMensajes As Button
-    Friend WithEvents Titulo As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Private WithEvents btnEditarContacto As Button
     Friend WithEvents IdDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents TituloDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents ContenidoDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents TagsDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents PasajesDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TituloDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ContenidoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TagsDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PasajesDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents Titulo As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
 End Class

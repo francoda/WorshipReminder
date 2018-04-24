@@ -11,8 +11,8 @@ Public Class Mensajes
             txtTitulo.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
             txtMensaje.ReadOnly = Not Editar
             txtMensaje.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
-            txtTags.ReadOnly = Not Editar
-            txtTags.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
+            panelDetalle.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
+            tags.Editable = Editar
             btnMas.Visible = Not Editar
             btnEditar.Visible = Not Editar And dgvMensajes.RowCount > 0
             btnBorrar.Visible = Editar
@@ -26,8 +26,10 @@ Public Class Mensajes
 
     Sub New()
         InitializeComponent()
-        MensajeBindingSource.DataSource = MensajeModel.ListaMensajes
+        MensajeBindingSource.DataSource = New Lista(Of Mensaje)
         MensajeBindingSource.Sort = "Titulo"
+        cbTipo.Text = "Titulo"
+        PermitirEditar = MensajeBindingSource.Count > 0
     End Sub
 
     Private Sub btnMas_Click(sender As Object, e As EventArgs) Handles btnMas.Click
@@ -40,19 +42,19 @@ Public Class Mensajes
     End Sub
 
     Private Sub btnBorrar_Click(sender As Object, e As EventArgs) Handles btnBorrar.Click
-        PermitirEditar = False
         If MsgBox("¿Desea eliminar el mensaje " &
             dgvMensajes.CurrentRow.Cells(TituloDataGridViewTextBoxColumn.Index).Value & "?",
             MsgBoxStyle.YesNo,
             dgvMensajes.CurrentRow.Cells(TituloDataGridViewTextBoxColumn.Index).Value) = MsgBoxResult.Yes Then
             MensajeBindingSource.RemoveCurrent()
-            MensajeModel.Save()
+            MensajeBindingSource.DataSource.Guardar()
         End If
+        PermitirEditar = False
     End Sub
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         PermitirEditar = False
-        MensajeModel.Save()
+        MensajeBindingSource.DataSource.Guardar()
     End Sub
 
     Private Sub dgvArchivos_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles dgvArchivos.DataBindingComplete
@@ -71,13 +73,11 @@ Public Class Mensajes
             filesDialog.Title = "Seleccione los archivos que desea agregar a este mensaje"
             If filesDialog.ShowDialog() = DialogResult.OK Then
                 For Each file As String In filesDialog.FileNames
-                    file = LocalFilesModel.SaveFile(file)
-                    Dim archivo As Archivo = ListaArchivosBindingSource.AddNew()
-                    archivo.Ruta = file
+                    ArchivosBindingSource.Add(New Archivo(file))
                 Next
             End If
         End Using
-        MensajeModel.Save()
+        MensajeBindingSource.DataSource.Guardar()
     End Sub
 
     Private Sub btnBorrarArchivo_Click(sender As Object, e As EventArgs) Handles btnBorrarArchivo.Click
@@ -85,8 +85,8 @@ Public Class Mensajes
                                                                dgvArchivos.CurrentRow.Cells(NombreDataGridViewTextBoxColumn.Index).Value & "?",
                                                                MsgBoxStyle.YesNo,
                                                                dgvArchivos.CurrentRow.Cells(NombreDataGridViewTextBoxColumn.Index).Value) = MsgBoxResult.Yes Then
-            ListaArchivosBindingSource.RemoveCurrent()
-            MensajeModel.Save()
+            ArchivosBindingSource.RemoveCurrent()
+            MensajeBindingSource.DataSource.Guardar()
         End If
     End Sub
 
@@ -102,9 +102,14 @@ Public Class Mensajes
     End Sub
 
     Private Sub txtTitulo_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtTitulo.Validating
-        If MensajeModel.ListaMensajes.Any(Function(x) x.Titulo.Trim.ToLower = txtTitulo.Text.Trim.ToLower) Then
+        If MensajeBindingSource.List.Cast(Of Mensaje).Any(Function(x) x.Titulo.Trim.ToLower = txtTitulo.Text.Trim.ToLower And x IsNot MensajeBindingSource.Current) Then
             e.Cancel = True
             MsgBox("Ya existe un mensaje con este Titulo.", MsgBoxStyle.Critical, "Cuidado")
         End If
     End Sub
+
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click, txtBuscar.Validating
+        MensajeBindingSource.Find(cbTipo.Text, txtBuscar.Text)
+    End Sub
+
 End Class

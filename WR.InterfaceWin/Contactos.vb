@@ -24,14 +24,15 @@ Public Class Contactos
             dgvIglesias.Enabled = Not Editar
             dgvContactos.ReadOnly = Not Editar
             spliterMensajes.Panel2Collapsed = Not Editar
-            MensajeBindingSource.DataSource = MensajeModel.ListaMensajes.Where(Function(x) IglesiaBindingSource.Current Is Nothing OrElse Not DirectCast(IglesiaBindingSource.Current, Iglesia).Mensajes.Any(Function(y) y.Equals(x))).ToList
+            MensajeBindingSource.DataSource = New Lista(Of Mensaje)().Where(Function(x) IglesiaBindingSource.Current Is Nothing OrElse Not DirectCast(IglesiaBindingSource.Current, Iglesia).Mensajes.Any(Function(y) y.Equals(x))).ToList
         End Set
     End Property
 
     Sub New()
         InitializeComponent()
-        IglesiaBindingSource.DataSource = IglesiaModel.ListaIglesias
+        IglesiaBindingSource.DataSource = New Lista(Of Iglesia)
         IglesiaBindingSource.Sort = "Nombre"
+        PermitirEditar = IglesiaBindingSource.Count > 0
     End Sub
 
     Private Sub btnMas_Click(sender As Object, e As EventArgs) Handles btnMas.Click
@@ -44,19 +45,19 @@ Public Class Contactos
     End Sub
 
     Private Sub btnBorrar_Click(sender As Object, e As EventArgs) Handles btnBorrar.Click
-        PermitirEditar = False
         If MsgBox("¿Desea eliminar el mensaje " &
             dgvIglesias.CurrentRow.Cells(NombreDataGridViewTextBoxColumn.Index).Value & "?",
             MsgBoxStyle.YesNo,
             dgvIglesias.CurrentRow.Cells(NombreDataGridViewTextBoxColumn.Index).Value) = MsgBoxResult.Yes Then
             IglesiaBindingSource.RemoveCurrent()
-            IglesiaModel.Save()
+            IglesiaBindingSource.DataSource.Guardar()
         End If
+        PermitirEditar = False
     End Sub
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         PermitirEditar = False
-        IglesiaModel.Save()
+        IglesiaBindingSource.DataSource.Guardar()
     End Sub
 
     Private Sub dgvContactos_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles dgvContactos.DataBindingComplete
@@ -98,7 +99,7 @@ Public Class Contactos
     End Sub
 
     Private Sub txtTitulo_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtTitulo.Validating
-        If IglesiaModel.ListaIglesias.Any(Function(x) x.Nombre.Trim.ToLower = txtTitulo.Text.Trim.ToLower) Then
+        If IglesiaBindingSource.DataSource.Any(Function(x) x.Nombre.Trim.ToLower = txtTitulo.Text.Trim.ToLower) Then
             e.Cancel = True
             MsgBox("Ya existe una Iglesia con este nombre.", MsgBoxStyle.Critical, "Cuidado")
         End If

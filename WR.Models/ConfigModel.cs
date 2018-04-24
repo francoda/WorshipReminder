@@ -2,13 +2,12 @@
 
 namespace WR.Models
 {
-    public class ConfigModel
+    public class Configuracion
     {
-        private static ConfigModel _config = new ConfigModel();
+        private static Configuracion _config = new Configuracion();
 
-        private ConfigModel()
+        private Configuracion()
         {
-            _config = JsonConvert.DeserializeObject<ConfigModel>(LocalFilesModel.Load("Configutations"));
         } 
 
     }

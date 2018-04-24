@@ -1,17 +1,37 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 
 namespace WR.Models
 {
-    public class Coleccion<T> : BindingList<T>
+
+    public class Lista<T> : BindingList<T>
     {
+        private List<T> ItemsOcultos = new List<T>();
+        private Dictionary<T, int> dicValores = new Dictionary<T, int>();
+
+        public Lista()
+        {
+            string text = string.Empty;
+
+            if (File.Exists(Path.Combine(Archivo.localpath, "WorshipReminder", typeof(T).Name + ".WR")))
+                text = File.ReadAllText(Path.Combine(Archivo.localpath, "WorshipReminder", typeof(T).Name + ".WR"));
+            if (text != string.Empty)
+            {
+                foreach (T item in JsonConvert.DeserializeObject<List<T>>(text))
+                    Add(item);
+            }
+        }
+
         private bool _isSorted;
         private ListSortDirection _sortDirection = ListSortDirection.Ascending;
 
         private PropertyDescriptor _sortProperty;
-        public Coleccion() { }
-        public Coleccion(IList<T> list) : base(list) { }
+        protected override bool SupportsSearchingCore => true;
+
+        public Lista(IList<T> list) : base(list) { }
         protected override bool SupportsSortingCore
         {
             get { return true; }
@@ -33,6 +53,29 @@ namespace WR.Models
             _sortDirection = ListSortDirection.Ascending;
             _sortProperty = null;
             _isSorted = false;
+        }
+        protected override int FindCore(PropertyDescriptor prop, object key)
+        {
+            if (!(key is string))
+                throw new NotSupportedException();
+            foreach (T item in Items as List<T>)
+                ItemsOcultos.Add(item);
+            Clear();
+            dicValores.Clear();
+            foreach (T item in ItemsOcultos as List<T>)
+            {
+                foreach (string keyWord in key.ToString().Trim().Split(' '))
+                {
+                    if (prop.GetValue(item).ToString().Normalize().Contains(keyWord.ToString().Normalize()))
+                        dicValores[item] = (dicValores.TryGetValue(item, out int valor) ? valor : 0) + 1;
+                }
+            }
+            foreach (KeyValuePair<T, int> item in dicValores)
+            {
+                if (item.Value > 0)
+                    Add(item.Key);
+            }
+            return -1;
         }
         protected override void ApplySortCore(PropertyDescriptor prop, ListSortDirection direction)
         {
@@ -63,6 +106,11 @@ namespace WR.Models
             if (lhsValue.Equals(rhsValue))
                 return 0;
             return lhsValue.ToString().CompareTo(rhsValue.ToString());
+        }
+        public void Guardar()
+        {
+            Directory.CreateDirectory(Path.Combine(Archivo.localpath, "WorshipReminder"));
+            File.WriteAllText(Path.Combine(Archivo.localpath, "WorshipReminder", typeof(T).Name + ".WR"), JsonConvert.SerializeObject(Items));
         }
     }
 }
