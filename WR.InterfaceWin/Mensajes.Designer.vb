@@ -23,7 +23,6 @@ Partial Class Mensajes
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim splitLista As System.Windows.Forms.SplitContainer
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim lblTags As System.Windows.Forms.Label
@@ -33,6 +32,7 @@ Partial Class Mensajes
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim panelTop As System.Windows.Forms.Panel
         Dim flpControles As System.Windows.Forms.FlowLayoutPanel
+        Me.splitLista = New System.Windows.Forms.SplitContainer()
         Me.dgvMensajes = New System.Windows.Forms.DataGridView()
         Me.TituloDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MensajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -48,9 +48,8 @@ Partial Class Mensajes
         Me.btnBorrarArchivo = New System.Windows.Forms.Button()
         Me.btnAgregarArchivo = New System.Windows.Forms.Button()
         Me.dgvArchivos = New System.Windows.Forms.DataGridView()
-        Me.RutaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ImagenDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.NombreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TamanoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ArchivosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtTitulo = New System.Windows.Forms.TextBox()
@@ -60,16 +59,15 @@ Partial Class Mensajes
         Me.btnMas = New System.Windows.Forms.Button()
         Me.tags = New WR.InterfaceWin.Etiquetas()
         Me.TagsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        splitLista = New System.Windows.Forms.SplitContainer()
         lblTags = New System.Windows.Forms.Label()
         lblArchivos = New System.Windows.Forms.Label()
         FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         panelTop = New System.Windows.Forms.Panel()
         flpControles = New System.Windows.Forms.FlowLayoutPanel()
-        CType(splitLista, System.ComponentModel.ISupportInitialize).BeginInit()
-        splitLista.Panel1.SuspendLayout()
-        splitLista.Panel2.SuspendLayout()
-        splitLista.SuspendLayout()
+        CType(Me.splitLista, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.splitLista.Panel1.SuspendLayout()
+        Me.splitLista.Panel2.SuspendLayout()
+        Me.splitLista.SuspendLayout()
         CType(Me.dgvMensajes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MensajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelBusqueda.SuspendLayout()
@@ -87,31 +85,31 @@ Partial Class Mensajes
         '
         'splitLista
         '
-        splitLista.Dock = System.Windows.Forms.DockStyle.Fill
-        splitLista.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
-        splitLista.Location = New System.Drawing.Point(0, 0)
-        splitLista.Name = "splitLista"
+        Me.splitLista.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.splitLista.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.splitLista.Location = New System.Drawing.Point(0, 0)
+        Me.splitLista.Name = "splitLista"
         '
         'splitLista.Panel1
         '
-        splitLista.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        splitLista.Panel1.Controls.Add(Me.dgvMensajes)
-        splitLista.Panel1.Controls.Add(Me.panelBusqueda)
-        splitLista.Panel1.Padding = New System.Windows.Forms.Padding(0, 5, 0, 10)
+        Me.splitLista.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.splitLista.Panel1.Controls.Add(Me.dgvMensajes)
+        Me.splitLista.Panel1.Controls.Add(Me.panelBusqueda)
+        Me.splitLista.Panel1.Padding = New System.Windows.Forms.Padding(0, 5, 0, 10)
         '
         'splitLista.Panel2
         '
-        splitLista.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        splitLista.Panel2.Controls.Add(Me.panelDetalle)
-        splitLista.Panel2.Controls.Add(Me.Panel1)
-        splitLista.Panel2.Controls.Add(Me.panelArchivos)
-        splitLista.Panel2.Controls.Add(Me.dgvArchivos)
-        splitLista.Panel2.Controls.Add(panelTop)
-        splitLista.Panel2.Padding = New System.Windows.Forms.Padding(0, 0, 0, 10)
-        splitLista.Size = New System.Drawing.Size(808, 495)
-        splitLista.SplitterDistance = 270
-        splitLista.SplitterWidth = 7
-        splitLista.TabIndex = 1
+        Me.splitLista.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.splitLista.Panel2.Controls.Add(Me.panelDetalle)
+        Me.splitLista.Panel2.Controls.Add(Me.Panel1)
+        Me.splitLista.Panel2.Controls.Add(Me.panelArchivos)
+        Me.splitLista.Panel2.Controls.Add(Me.dgvArchivos)
+        Me.splitLista.Panel2.Controls.Add(panelTop)
+        Me.splitLista.Panel2.Padding = New System.Windows.Forms.Padding(0, 0, 0, 10)
+        Me.splitLista.Size = New System.Drawing.Size(808, 495)
+        Me.splitLista.SplitterDistance = 270
+        Me.splitLista.SplitterWidth = 7
+        Me.splitLista.TabIndex = 1
         '
         'dgvMensajes
         '
@@ -171,10 +169,11 @@ Partial Class Mensajes
         Me.panelBusqueda.Controls.Add(Me.Panel2)
         Me.panelBusqueda.Controls.Add(Me.cbTipo)
         Me.panelBusqueda.Controls.Add(Me.btnBuscar)
+        Me.panelBusqueda.Controls.Add(Me.btnMas)
         Me.panelBusqueda.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelBusqueda.Location = New System.Drawing.Point(0, 5)
         Me.panelBusqueda.Name = "panelBusqueda"
-        Me.panelBusqueda.Padding = New System.Windows.Forms.Padding(3, 3, 0, 3)
+        Me.panelBusqueda.Padding = New System.Windows.Forms.Padding(3)
         Me.panelBusqueda.Size = New System.Drawing.Size(270, 30)
         Me.panelBusqueda.TabIndex = 0
         '
@@ -199,7 +198,7 @@ Partial Class Mensajes
         Me.txtBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBuscar.Location = New System.Drawing.Point(0, 5)
         Me.txtBuscar.Name = "txtBuscar"
-        Me.txtBuscar.Size = New System.Drawing.Size(150, 15)
+        Me.txtBuscar.Size = New System.Drawing.Size(127, 15)
         Me.txtBuscar.TabIndex = 0
         '
         'cbTipo
@@ -226,7 +225,7 @@ Partial Class Mensajes
         Me.btnBuscar.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnBuscar.FlatAppearance.BorderSize = 0
         Me.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBuscar.Location = New System.Drawing.Point(250, 3)
+        Me.btnBuscar.Location = New System.Drawing.Point(227, 3)
         Me.btnBuscar.Margin = New System.Windows.Forms.Padding(0)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(20, 24)
@@ -361,7 +360,7 @@ Partial Class Mensajes
         Me.dgvArchivos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.dgvArchivos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvArchivos.ColumnHeadersVisible = False
-        Me.dgvArchivos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RutaDataGridViewTextBoxColumn, Me.NombreDataGridViewTextBoxColumn, Me.ImagenDataGridViewImageColumn, Me.TamanoDataGridViewTextBoxColumn})
+        Me.dgvArchivos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ImagenDataGridViewImageColumn, Me.NombreDataGridViewTextBoxColumn, Me.TamanoDataGridViewTextBoxColumn})
         Me.dgvArchivos.DataSource = Me.ArchivosBindingSource
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
@@ -390,32 +389,26 @@ Partial Class Mensajes
         Me.dgvArchivos.Size = New System.Drawing.Size(531, 73)
         Me.dgvArchivos.TabIndex = 10
         '
-        'RutaDataGridViewTextBoxColumn
-        '
-        Me.RutaDataGridViewTextBoxColumn.DataPropertyName = "Ruta"
-        Me.RutaDataGridViewTextBoxColumn.HeaderText = "Ruta"
-        Me.RutaDataGridViewTextBoxColumn.Name = "RutaDataGridViewTextBoxColumn"
-        Me.RutaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.RutaDataGridViewTextBoxColumn.Width = 5
-        '
-        'NombreDataGridViewTextBoxColumn
-        '
-        Me.NombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre"
-        Me.NombreDataGridViewTextBoxColumn.HeaderText = "Nombre"
-        Me.NombreDataGridViewTextBoxColumn.Name = "NombreDataGridViewTextBoxColumn"
-        Me.NombreDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NombreDataGridViewTextBoxColumn.Width = 5
-        '
         'ImagenDataGridViewImageColumn
         '
+        Me.ImagenDataGridViewImageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.ImagenDataGridViewImageColumn.DataPropertyName = "Imagen"
         Me.ImagenDataGridViewImageColumn.HeaderText = "Imagen"
         Me.ImagenDataGridViewImageColumn.Name = "ImagenDataGridViewImageColumn"
         Me.ImagenDataGridViewImageColumn.ReadOnly = True
         Me.ImagenDataGridViewImageColumn.Width = 5
         '
+        'NombreDataGridViewTextBoxColumn
+        '
+        Me.NombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.NombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre"
+        Me.NombreDataGridViewTextBoxColumn.HeaderText = "Nombre"
+        Me.NombreDataGridViewTextBoxColumn.Name = "NombreDataGridViewTextBoxColumn"
+        Me.NombreDataGridViewTextBoxColumn.ReadOnly = True
+        '
         'TamanoDataGridViewTextBoxColumn
         '
+        Me.TamanoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.TamanoDataGridViewTextBoxColumn.DataPropertyName = "Tamano"
         Me.TamanoDataGridViewTextBoxColumn.HeaderText = "Tamano"
         Me.TamanoDataGridViewTextBoxColumn.Name = "TamanoDataGridViewTextBoxColumn"
@@ -450,7 +443,7 @@ Partial Class Mensajes
         Me.txtTitulo.Name = "txtTitulo"
         Me.txtTitulo.ReadOnly = True
         Me.txtTitulo.ShortcutsEnabled = False
-        Me.txtTitulo.Size = New System.Drawing.Size(406, 15)
+        Me.txtTitulo.Size = New System.Drawing.Size(431, 15)
         Me.txtTitulo.TabIndex = 4
         Me.txtTitulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -460,12 +453,11 @@ Partial Class Mensajes
         flpControles.Controls.Add(Me.btnBorrar)
         flpControles.Controls.Add(Me.btnGuardar)
         flpControles.Controls.Add(Me.btnEditar)
-        flpControles.Controls.Add(Me.btnMas)
         flpControles.Dock = System.Windows.Forms.DockStyle.Right
         flpControles.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        flpControles.Location = New System.Drawing.Point(416, 5)
+        flpControles.Location = New System.Drawing.Point(441, 5)
         flpControles.Name = "flpControles"
-        flpControles.Size = New System.Drawing.Size(105, 20)
+        flpControles.Size = New System.Drawing.Size(80, 20)
         flpControles.TabIndex = 7
         '
         'btnBorrar
@@ -518,18 +510,19 @@ Partial Class Mensajes
         '
         'btnMas
         '
-        Me.btnMas.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMas.BackColor = System.Drawing.Color.White
         Me.btnMas.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Mas
         Me.btnMas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.btnMas.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnMas.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnMas.FlatAppearance.BorderSize = 0
         Me.btnMas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnMas.Location = New System.Drawing.Point(85, 0)
-        Me.btnMas.Margin = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.btnMas.Location = New System.Drawing.Point(247, 3)
+        Me.btnMas.Margin = New System.Windows.Forms.Padding(0)
         Me.btnMas.Name = "btnMas"
-        Me.btnMas.Size = New System.Drawing.Size(20, 20)
+        Me.btnMas.Size = New System.Drawing.Size(20, 24)
         Me.btnMas.TabIndex = 8
-        Me.btnMas.UseVisualStyleBackColor = True
+        Me.btnMas.UseVisualStyleBackColor = False
         '
         'tags
         '
@@ -551,14 +544,14 @@ Partial Class Mensajes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(splitLista)
+        Me.Controls.Add(Me.splitLista)
         Me.Name = "Mensajes"
         Me.Size = New System.Drawing.Size(808, 495)
-        splitLista.Panel1.ResumeLayout(False)
-        splitLista.Panel2.ResumeLayout(False)
-        splitLista.Panel2.PerformLayout()
-        CType(splitLista, System.ComponentModel.ISupportInitialize).EndInit()
-        splitLista.ResumeLayout(False)
+        Me.splitLista.Panel1.ResumeLayout(False)
+        Me.splitLista.Panel2.ResumeLayout(False)
+        Me.splitLista.Panel2.PerformLayout()
+        CType(Me.splitLista, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.splitLista.ResumeLayout(False)
         CType(Me.dgvMensajes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MensajeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelBusqueda.ResumeLayout(False)
@@ -603,11 +596,11 @@ Partial Class Mensajes
     Friend WithEvents cbTipo As ComboBox
     Friend WithEvents Panel2 As Panel
     Friend WithEvents MensajeBindingSource As BindingSource
-    Friend WithEvents RutaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents NombreDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ImagenDataGridViewImageColumn As DataGridViewImageColumn
-    Friend WithEvents TamanoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ArchivosBindingSource As BindingSource
     Friend WithEvents TituloDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ImagenDataGridViewImageColumn As DataGridViewImageColumn
+    Friend WithEvents NombreDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TamanoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents splitLista As SplitContainer
     Friend WithEvents TagsBindingSource As BindingSource
 End Class

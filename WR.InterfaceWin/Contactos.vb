@@ -30,8 +30,10 @@ Public Class Contactos
 
     Sub New()
         InitializeComponent()
+        splitLista.Panel2Collapsed = True
         IglesiaBindingSource.DataSource = New Lista(Of Iglesia)
         IglesiaBindingSource.Sort = "Nombre"
+        cbTipo.Text = "Nombre"
         PermitirEditar = IglesiaBindingSource.Count > 0
     End Sub
 
@@ -99,9 +101,13 @@ Public Class Contactos
     End Sub
 
     Private Sub txtTitulo_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtTitulo.Validating
-        If IglesiaBindingSource.DataSource.Any(Function(x) x.Nombre.Trim.ToLower = txtTitulo.Text.Trim.ToLower) Then
+        If IglesiaBindingSource.Current IsNot Nothing AndAlso IglesiaBindingSource.DataSource.Any(Function(x) x.Nombre.Trim.ToLower = txtTitulo.Text.Trim.ToLower) Then
             e.Cancel = True
             MsgBox("Ya existe una Iglesia con este nombre.", MsgBoxStyle.Critical, "Cuidado")
         End If
+    End Sub
+
+    Private Sub IglesiaBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles IglesiaBindingSource.CurrentChanged
+        splitLista.Panel2Collapsed = IglesiaBindingSource.Current Is Nothing
     End Sub
 End Class

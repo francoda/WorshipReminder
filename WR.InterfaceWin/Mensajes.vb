@@ -9,6 +9,9 @@ Public Class Mensajes
         Set(ByVal Editar As Boolean)
             txtTitulo.ReadOnly = Not Editar
             txtTitulo.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
+            If MensajeBindingSource.Current IsNot Nothing AndAlso Not DirectCast(MensajeBindingSource.Current, Mensaje).TieneDescripcion Then
+                txtMensaje.Clear()
+            End If
             txtMensaje.ReadOnly = Not Editar
             txtMensaje.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
             panelDetalle.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
@@ -26,6 +29,7 @@ Public Class Mensajes
 
     Sub New()
         InitializeComponent()
+        splitLista.Panel2Collapsed = True
         MensajeBindingSource.DataSource = New Lista(Of Mensaje)
         MensajeBindingSource.Sort = "Titulo"
         cbTipo.Text = "Titulo"
@@ -93,7 +97,7 @@ Public Class Mensajes
     Private Sub dgvArchivos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvArchivos.CellDoubleClick
         If dgvArchivos.CurrentRow IsNot Nothing Then
             Try
-                Process.Start(dgvArchivos.CurrentRow.Cells(RutaDataGridViewTextBoxColumn.Index).Value)
+                Process.Start(dgvArchivos.CurrentRow.Cells(PathDataGridViewTextBoxColumn.Index).Value)
             Catch
                 MsgBox("Error al abrir el archivo" & dgvArchivos.CurrentRow.Cells(NombreDataGridViewTextBoxColumn.Index).Value,
                    MsgBoxStyle.Exclamation, dgvArchivos.CurrentRow.Cells(NombreDataGridViewTextBoxColumn.Index).Value)
@@ -112,4 +116,7 @@ Public Class Mensajes
         MensajeBindingSource.Find(cbTipo.Text, txtBuscar.Text)
     End Sub
 
+    Private Sub MensajeBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles MensajeBindingSource.CurrentChanged
+        splitLista.Panel2Collapsed = MensajeBindingSource.Current Is Nothing
+    End Sub
 End Class
