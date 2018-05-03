@@ -49,6 +49,7 @@ Partial Class Etiqueta
         Me.btnBorrar.TabIndex = 1
         Me.btnBorrar.Text = "X"
         Me.btnBorrar.UseVisualStyleBackColor = True
+        Me.btnBorrar.Visible = False
         '
         'Etiqueta
         '

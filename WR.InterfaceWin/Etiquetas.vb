@@ -12,6 +12,16 @@ Public Class Etiquetas
         End Set
     End Property
 
+    <AttributeProvider(GetType(AutoCompleteStringCollection))>
+    Public Property AutoCompleteCustomSource() As AutoCompleteStringCollection
+        Get
+            Return txtNewTag.AutoCompleteCustomSource
+        End Get
+        Set(ByVal value As AutoCompleteStringCollection)
+            txtNewTag.AutoCompleteCustomSource = value
+        End Set
+    End Property
+
     Public Property Editable() As Boolean
         Get
             Return panelNewTag.Visible
@@ -27,11 +37,14 @@ Public Class Etiquetas
     End Property
 
     Private Sub tagsBindingSource_ListChanged(sender As Object, e As ListChangedEventArgs) Handles tagsBindingSource.ListChanged
+        txtNewTag.Text = String.Empty
         flpTags.Controls.Clear()
         flpTags.Controls.Add(txtNewTag)
         flpTags.Controls.Add(btnAgregar)
         For Each tag As String In tagsBindingSource.List
-            Dim tagCtl As New Etiqueta(tag)
+            Dim tagCtl As New Etiqueta(tag) With {
+                .Editable = Editable
+            }
             flpTags.Controls.Add(tagCtl)
             AddHandler tagCtl.Borrar, AddressOf tags_Borrar
         Next
@@ -54,7 +67,7 @@ Public Class Etiquetas
         Agregar(txtNewTag.Text)
     End Sub
 
-    Private Sub Agregar(tag As String)
+    Public Sub Agregar(tag As String)
         If tag.Length > 0 And Not tagsBindingSource.List.Cast(Of String).Any(Function(x) x = tag) Then
             tagsBindingSource.Add(tag)
         End If

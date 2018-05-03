@@ -23,40 +23,46 @@ Partial Class Mensajes
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim lblTags As System.Windows.Forms.Label
         Dim lblArchivos As System.Windows.Forms.Label
         Dim FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim panelTop As System.Windows.Forms.Panel
         Dim flpControles As System.Windows.Forms.FlowLayoutPanel
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.btnBorrarArchivo = New System.Windows.Forms.Button()
+        Me.btnAgregarArchivo = New System.Windows.Forms.Button()
+        Me.txtTitulo = New System.Windows.Forms.TextBox()
+        Me.MensajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnBorrar = New System.Windows.Forms.Button()
+        Me.btnGuardar = New System.Windows.Forms.Button()
+        Me.btnEditar = New System.Windows.Forms.Button()
         Me.splitLista = New System.Windows.Forms.SplitContainer()
         Me.dgvMensajes = New System.Windows.Forms.DataGridView()
         Me.TituloDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MensajeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelBusqueda = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.txtBuscar = New System.Windows.Forms.TextBox()
         Me.cbTipo = New System.Windows.Forms.ComboBox()
         Me.btnBuscar = New System.Windows.Forms.Button()
+        Me.btnMas = New System.Windows.Forms.Button()
+        Me.cmsAgregar = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.NuevoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportarVariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.panelDetalle = New System.Windows.Forms.Panel()
+        Me.splitMesajePreview = New System.Windows.Forms.SplitContainer()
         Me.txtMensaje = New System.Windows.Forms.RichTextBox()
+        Me.txtPreviewWord = New System.Windows.Forms.RichTextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.panelArchivos = New System.Windows.Forms.Panel()
-        Me.btnBorrarArchivo = New System.Windows.Forms.Button()
-        Me.btnAgregarArchivo = New System.Windows.Forms.Button()
         Me.dgvArchivos = New System.Windows.Forms.DataGridView()
         Me.ImagenDataGridViewImageColumn = New System.Windows.Forms.DataGridViewImageColumn()
         Me.NombreDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TamanoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ArchivosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.txtTitulo = New System.Windows.Forms.TextBox()
-        Me.btnBorrar = New System.Windows.Forms.Button()
-        Me.btnGuardar = New System.Windows.Forms.Button()
-        Me.btnEditar = New System.Windows.Forms.Button()
-        Me.btnMas = New System.Windows.Forms.Button()
         Me.tags = New WR.InterfaceWin.Etiquetas()
         Me.TagsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         lblTags = New System.Windows.Forms.Label()
@@ -64,24 +70,189 @@ Partial Class Mensajes
         FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         panelTop = New System.Windows.Forms.Panel()
         flpControles = New System.Windows.Forms.FlowLayoutPanel()
+        FlowLayoutPanel1.SuspendLayout()
+        panelTop.SuspendLayout()
+        CType(Me.MensajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        flpControles.SuspendLayout()
         CType(Me.splitLista, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.splitLista.Panel1.SuspendLayout()
         Me.splitLista.Panel2.SuspendLayout()
         Me.splitLista.SuspendLayout()
         CType(Me.dgvMensajes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MensajeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelBusqueda.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.cmsAgregar.SuspendLayout()
         Me.panelDetalle.SuspendLayout()
+        CType(Me.splitMesajePreview, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.splitMesajePreview.Panel1.SuspendLayout()
+        Me.splitMesajePreview.Panel2.SuspendLayout()
+        Me.splitMesajePreview.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.panelArchivos.SuspendLayout()
-        FlowLayoutPanel1.SuspendLayout()
         CType(Me.dgvArchivos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ArchivosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        panelTop.SuspendLayout()
-        flpControles.SuspendLayout()
         CType(Me.TagsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'lblTags
+        '
+        lblTags.AutoSize = True
+        lblTags.Dock = System.Windows.Forms.DockStyle.Left
+        lblTags.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        lblTags.ForeColor = System.Drawing.Color.FromArgb(CType(CType(87, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(153, Byte), Integer))
+        lblTags.Location = New System.Drawing.Point(10, 3)
+        lblTags.Name = "lblTags"
+        lblTags.Size = New System.Drawing.Size(44, 16)
+        lblTags.TabIndex = 9
+        lblTags.Text = "Tags"
+        '
+        'lblArchivos
+        '
+        lblArchivos.AutoSize = True
+        lblArchivos.Dock = System.Windows.Forms.DockStyle.Fill
+        lblArchivos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        lblArchivos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(87, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(153, Byte), Integer))
+        lblArchivos.Location = New System.Drawing.Point(10, 3)
+        lblArchivos.Name = "lblArchivos"
+        lblArchivos.Size = New System.Drawing.Size(68, 16)
+        lblArchivos.TabIndex = 8
+        lblArchivos.Text = "Archivos"
+        '
+        'FlowLayoutPanel1
+        '
+        FlowLayoutPanel1.AutoSize = True
+        FlowLayoutPanel1.Controls.Add(Me.btnBorrarArchivo)
+        FlowLayoutPanel1.Controls.Add(Me.btnAgregarArchivo)
+        FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right
+        FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        FlowLayoutPanel1.Location = New System.Drawing.Point(486, 3)
+        FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        FlowLayoutPanel1.Size = New System.Drawing.Size(35, 16)
+        FlowLayoutPanel1.TabIndex = 7
+        '
+        'btnBorrarArchivo
+        '
+        Me.btnBorrarArchivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnBorrarArchivo.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Borrar
+        Me.btnBorrarArchivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnBorrarArchivo.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnBorrarArchivo.FlatAppearance.BorderSize = 0
+        Me.btnBorrarArchivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBorrarArchivo.Location = New System.Drawing.Point(0, 0)
+        Me.btnBorrarArchivo.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnBorrarArchivo.Name = "btnBorrarArchivo"
+        Me.btnBorrarArchivo.Size = New System.Drawing.Size(15, 15)
+        Me.btnBorrarArchivo.TabIndex = 7
+        Me.btnBorrarArchivo.UseVisualStyleBackColor = True
+        Me.btnBorrarArchivo.Visible = False
+        '
+        'btnAgregarArchivo
+        '
+        Me.btnAgregarArchivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAgregarArchivo.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Mas
+        Me.btnAgregarArchivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnAgregarArchivo.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAgregarArchivo.FlatAppearance.BorderSize = 0
+        Me.btnAgregarArchivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAgregarArchivo.Location = New System.Drawing.Point(20, 0)
+        Me.btnAgregarArchivo.Margin = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.btnAgregarArchivo.Name = "btnAgregarArchivo"
+        Me.btnAgregarArchivo.Size = New System.Drawing.Size(15, 15)
+        Me.btnAgregarArchivo.TabIndex = 8
+        Me.btnAgregarArchivo.UseVisualStyleBackColor = True
+        Me.btnAgregarArchivo.Visible = False
+        '
+        'panelTop
+        '
+        panelTop.Controls.Add(Me.txtTitulo)
+        panelTop.Controls.Add(flpControles)
+        panelTop.Dock = System.Windows.Forms.DockStyle.Top
+        panelTop.Location = New System.Drawing.Point(0, 0)
+        panelTop.Name = "panelTop"
+        panelTop.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
+        panelTop.Size = New System.Drawing.Size(531, 30)
+        panelTop.TabIndex = 9
+        '
+        'txtTitulo
+        '
+        Me.txtTitulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.txtTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtTitulo.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.MensajeBindingSource, "Titulo", True))
+        Me.txtTitulo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtTitulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTitulo.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.txtTitulo.Location = New System.Drawing.Point(10, 5)
+        Me.txtTitulo.Name = "txtTitulo"
+        Me.txtTitulo.ReadOnly = True
+        Me.txtTitulo.ShortcutsEnabled = False
+        Me.txtTitulo.Size = New System.Drawing.Size(431, 15)
+        Me.txtTitulo.TabIndex = 4
+        Me.txtTitulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'MensajeBindingSource
+        '
+        Me.MensajeBindingSource.DataSource = GetType(WR.Models.Mensaje)
+        '
+        'flpControles
+        '
+        flpControles.AutoSize = True
+        flpControles.Controls.Add(Me.btnBorrar)
+        flpControles.Controls.Add(Me.btnGuardar)
+        flpControles.Controls.Add(Me.btnEditar)
+        flpControles.Dock = System.Windows.Forms.DockStyle.Right
+        flpControles.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        flpControles.Location = New System.Drawing.Point(441, 5)
+        flpControles.Name = "flpControles"
+        flpControles.Size = New System.Drawing.Size(80, 20)
+        flpControles.TabIndex = 7
+        '
+        'btnBorrar
+        '
+        Me.btnBorrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnBorrar.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Borrar
+        Me.btnBorrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnBorrar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnBorrar.FlatAppearance.BorderSize = 0
+        Me.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBorrar.Location = New System.Drawing.Point(10, 0)
+        Me.btnBorrar.Margin = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.btnBorrar.Name = "btnBorrar"
+        Me.btnBorrar.Size = New System.Drawing.Size(20, 20)
+        Me.btnBorrar.TabIndex = 7
+        Me.btnBorrar.UseVisualStyleBackColor = True
+        Me.btnBorrar.Visible = False
+        '
+        'btnGuardar
+        '
+        Me.btnGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnGuardar.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Guardar
+        Me.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnGuardar.FlatAppearance.BorderSize = 0
+        Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGuardar.Location = New System.Drawing.Point(35, 0)
+        Me.btnGuardar.Margin = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.btnGuardar.Name = "btnGuardar"
+        Me.btnGuardar.Size = New System.Drawing.Size(20, 20)
+        Me.btnGuardar.TabIndex = 6
+        Me.btnGuardar.UseVisualStyleBackColor = True
+        Me.btnGuardar.Visible = False
+        '
+        'btnEditar
+        '
+        Me.btnEditar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEditar.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Editar
+        Me.btnEditar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnEditar.FlatAppearance.BorderSize = 0
+        Me.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEditar.Location = New System.Drawing.Point(60, 0)
+        Me.btnEditar.Margin = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.btnEditar.Name = "btnEditar"
+        Me.btnEditar.Size = New System.Drawing.Size(20, 20)
+        Me.btnEditar.TabIndex = 5
+        Me.btnEditar.UseVisualStyleBackColor = True
+        Me.btnEditar.Visible = False
         '
         'splitLista
         '
@@ -160,10 +331,6 @@ Partial Class Mensajes
         Me.TituloDataGridViewTextBoxColumn.Name = "TituloDataGridViewTextBoxColumn"
         Me.TituloDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'MensajeBindingSource
-        '
-        Me.MensajeBindingSource.DataSource = GetType(WR.Models.Mensaje)
-        '
         'panelBusqueda
         '
         Me.panelBusqueda.Controls.Add(Me.Panel2)
@@ -232,9 +399,50 @@ Partial Class Mensajes
         Me.btnBuscar.TabIndex = 7
         Me.btnBuscar.UseVisualStyleBackColor = False
         '
+        'btnMas
+        '
+        Me.btnMas.BackColor = System.Drawing.Color.White
+        Me.btnMas.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Mas
+        Me.btnMas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnMas.ContextMenuStrip = Me.cmsAgregar
+        Me.btnMas.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnMas.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnMas.FlatAppearance.BorderSize = 0
+        Me.btnMas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMas.Location = New System.Drawing.Point(247, 3)
+        Me.btnMas.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnMas.Name = "btnMas"
+        Me.btnMas.Size = New System.Drawing.Size(20, 24)
+        Me.btnMas.TabIndex = 8
+        Me.btnMas.UseVisualStyleBackColor = False
+        '
+        'cmsAgregar
+        '
+        Me.cmsAgregar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevoToolStripMenuItem, Me.ImportarToolStripMenuItem, Me.ImportarVariosToolStripMenuItem})
+        Me.cmsAgregar.Name = "cmsAgregar"
+        Me.cmsAgregar.Size = New System.Drawing.Size(155, 70)
+        '
+        'NuevoToolStripMenuItem
+        '
+        Me.NuevoToolStripMenuItem.Name = "NuevoToolStripMenuItem"
+        Me.NuevoToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.NuevoToolStripMenuItem.Text = "Nuevo"
+        '
+        'ImportarToolStripMenuItem
+        '
+        Me.ImportarToolStripMenuItem.Name = "ImportarToolStripMenuItem"
+        Me.ImportarToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.ImportarToolStripMenuItem.Text = "Importar"
+        '
+        'ImportarVariosToolStripMenuItem
+        '
+        Me.ImportarVariosToolStripMenuItem.Name = "ImportarVariosToolStripMenuItem"
+        Me.ImportarVariosToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.ImportarVariosToolStripMenuItem.Text = "Importar Varios"
+        '
         'panelDetalle
         '
-        Me.panelDetalle.Controls.Add(Me.txtMensaje)
+        Me.panelDetalle.Controls.Add(Me.splitMesajePreview)
         Me.panelDetalle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelDetalle.Location = New System.Drawing.Point(0, 30)
         Me.panelDetalle.Name = "panelDetalle"
@@ -242,19 +450,50 @@ Partial Class Mensajes
         Me.panelDetalle.Size = New System.Drawing.Size(531, 338)
         Me.panelDetalle.TabIndex = 12
         '
+        'splitMesajePreview
+        '
+        Me.splitMesajePreview.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.splitMesajePreview.Location = New System.Drawing.Point(3, 3)
+        Me.splitMesajePreview.Name = "splitMesajePreview"
+        '
+        'splitMesajePreview.Panel1
+        '
+        Me.splitMesajePreview.Panel1.Controls.Add(Me.txtMensaje)
+        '
+        'splitMesajePreview.Panel2
+        '
+        Me.splitMesajePreview.Panel2.Controls.Add(Me.txtPreviewWord)
+        Me.splitMesajePreview.Panel2Collapsed = True
+        Me.splitMesajePreview.Size = New System.Drawing.Size(525, 332)
+        Me.splitMesajePreview.SplitterDistance = 175
+        Me.splitMesajePreview.TabIndex = 9
+        '
         'txtMensaje
         '
         Me.txtMensaje.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
         Me.txtMensaje.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtMensaje.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.MensajeBindingSource, "Descripcion", True))
         Me.txtMensaje.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtMensaje.Location = New System.Drawing.Point(3, 3)
+        Me.txtMensaje.Location = New System.Drawing.Point(0, 0)
         Me.txtMensaje.Name = "txtMensaje"
         Me.txtMensaje.ReadOnly = True
         Me.txtMensaje.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
         Me.txtMensaje.Size = New System.Drawing.Size(525, 332)
         Me.txtMensaje.TabIndex = 8
         Me.txtMensaje.Text = ""
+        '
+        'txtPreviewWord
+        '
+        Me.txtPreviewWord.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.txtPreviewWord.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtPreviewWord.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtPreviewWord.Location = New System.Drawing.Point(0, 0)
+        Me.txtPreviewWord.Name = "txtPreviewWord"
+        Me.txtPreviewWord.ReadOnly = True
+        Me.txtPreviewWord.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
+        Me.txtPreviewWord.Size = New System.Drawing.Size(96, 100)
+        Me.txtPreviewWord.TabIndex = 9
+        Me.txtPreviewWord.Text = ""
         '
         'Panel1
         '
@@ -266,18 +505,6 @@ Partial Class Mensajes
         Me.Panel1.Padding = New System.Windows.Forms.Padding(10, 3, 10, 3)
         Me.Panel1.Size = New System.Drawing.Size(531, 22)
         Me.Panel1.TabIndex = 11
-        '
-        'lblTags
-        '
-        lblTags.AutoSize = True
-        lblTags.Dock = System.Windows.Forms.DockStyle.Left
-        lblTags.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        lblTags.ForeColor = System.Drawing.Color.FromArgb(CType(CType(87, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(153, Byte), Integer))
-        lblTags.Location = New System.Drawing.Point(10, 3)
-        lblTags.Name = "lblTags"
-        lblTags.Size = New System.Drawing.Size(44, 16)
-        lblTags.TabIndex = 9
-        lblTags.Text = "Tags"
         '
         'panelArchivos
         '
@@ -291,62 +518,6 @@ Partial Class Mensajes
         Me.panelArchivos.Size = New System.Drawing.Size(531, 22)
         Me.panelArchivos.TabIndex = 10
         Me.panelArchivos.Visible = False
-        '
-        'lblArchivos
-        '
-        lblArchivos.AutoSize = True
-        lblArchivos.Dock = System.Windows.Forms.DockStyle.Fill
-        lblArchivos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        lblArchivos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(87, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(153, Byte), Integer))
-        lblArchivos.Location = New System.Drawing.Point(10, 3)
-        lblArchivos.Name = "lblArchivos"
-        lblArchivos.Size = New System.Drawing.Size(68, 16)
-        lblArchivos.TabIndex = 8
-        lblArchivos.Text = "Archivos"
-        '
-        'FlowLayoutPanel1
-        '
-        FlowLayoutPanel1.AutoSize = True
-        FlowLayoutPanel1.Controls.Add(Me.btnBorrarArchivo)
-        FlowLayoutPanel1.Controls.Add(Me.btnAgregarArchivo)
-        FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right
-        FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        FlowLayoutPanel1.Location = New System.Drawing.Point(486, 3)
-        FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        FlowLayoutPanel1.Size = New System.Drawing.Size(35, 16)
-        FlowLayoutPanel1.TabIndex = 7
-        '
-        'btnBorrarArchivo
-        '
-        Me.btnBorrarArchivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnBorrarArchivo.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Borrar
-        Me.btnBorrarArchivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnBorrarArchivo.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBorrarArchivo.FlatAppearance.BorderSize = 0
-        Me.btnBorrarArchivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBorrarArchivo.Location = New System.Drawing.Point(0, 0)
-        Me.btnBorrarArchivo.Margin = New System.Windows.Forms.Padding(0)
-        Me.btnBorrarArchivo.Name = "btnBorrarArchivo"
-        Me.btnBorrarArchivo.Size = New System.Drawing.Size(15, 15)
-        Me.btnBorrarArchivo.TabIndex = 7
-        Me.btnBorrarArchivo.UseVisualStyleBackColor = True
-        Me.btnBorrarArchivo.Visible = False
-        '
-        'btnAgregarArchivo
-        '
-        Me.btnAgregarArchivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAgregarArchivo.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Mas
-        Me.btnAgregarArchivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnAgregarArchivo.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAgregarArchivo.FlatAppearance.BorderSize = 0
-        Me.btnAgregarArchivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAgregarArchivo.Location = New System.Drawing.Point(20, 0)
-        Me.btnAgregarArchivo.Margin = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.btnAgregarArchivo.Name = "btnAgregarArchivo"
-        Me.btnAgregarArchivo.Size = New System.Drawing.Size(15, 15)
-        Me.btnAgregarArchivo.TabIndex = 8
-        Me.btnAgregarArchivo.UseVisualStyleBackColor = True
-        Me.btnAgregarArchivo.Visible = False
         '
         'dgvArchivos
         '
@@ -420,110 +591,6 @@ Partial Class Mensajes
         Me.ArchivosBindingSource.DataMember = "Archivos"
         Me.ArchivosBindingSource.DataSource = Me.MensajeBindingSource
         '
-        'panelTop
-        '
-        panelTop.Controls.Add(Me.txtTitulo)
-        panelTop.Controls.Add(flpControles)
-        panelTop.Dock = System.Windows.Forms.DockStyle.Top
-        panelTop.Location = New System.Drawing.Point(0, 0)
-        panelTop.Name = "panelTop"
-        panelTop.Padding = New System.Windows.Forms.Padding(10, 5, 10, 5)
-        panelTop.Size = New System.Drawing.Size(531, 30)
-        panelTop.TabIndex = 9
-        '
-        'txtTitulo
-        '
-        Me.txtTitulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        Me.txtTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtTitulo.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.MensajeBindingSource, "Titulo", True))
-        Me.txtTitulo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtTitulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTitulo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(87, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(153, Byte), Integer))
-        Me.txtTitulo.Location = New System.Drawing.Point(10, 5)
-        Me.txtTitulo.Name = "txtTitulo"
-        Me.txtTitulo.ReadOnly = True
-        Me.txtTitulo.ShortcutsEnabled = False
-        Me.txtTitulo.Size = New System.Drawing.Size(431, 15)
-        Me.txtTitulo.TabIndex = 4
-        Me.txtTitulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'flpControles
-        '
-        flpControles.AutoSize = True
-        flpControles.Controls.Add(Me.btnBorrar)
-        flpControles.Controls.Add(Me.btnGuardar)
-        flpControles.Controls.Add(Me.btnEditar)
-        flpControles.Dock = System.Windows.Forms.DockStyle.Right
-        flpControles.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        flpControles.Location = New System.Drawing.Point(441, 5)
-        flpControles.Name = "flpControles"
-        flpControles.Size = New System.Drawing.Size(80, 20)
-        flpControles.TabIndex = 7
-        '
-        'btnBorrar
-        '
-        Me.btnBorrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnBorrar.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Borrar
-        Me.btnBorrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnBorrar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBorrar.FlatAppearance.BorderSize = 0
-        Me.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBorrar.Location = New System.Drawing.Point(10, 0)
-        Me.btnBorrar.Margin = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.btnBorrar.Name = "btnBorrar"
-        Me.btnBorrar.Size = New System.Drawing.Size(20, 20)
-        Me.btnBorrar.TabIndex = 7
-        Me.btnBorrar.UseVisualStyleBackColor = True
-        Me.btnBorrar.Visible = False
-        '
-        'btnGuardar
-        '
-        Me.btnGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGuardar.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Guardar
-        Me.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnGuardar.FlatAppearance.BorderSize = 0
-        Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGuardar.Location = New System.Drawing.Point(35, 0)
-        Me.btnGuardar.Margin = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.btnGuardar.Name = "btnGuardar"
-        Me.btnGuardar.Size = New System.Drawing.Size(20, 20)
-        Me.btnGuardar.TabIndex = 6
-        Me.btnGuardar.UseVisualStyleBackColor = True
-        Me.btnGuardar.Visible = False
-        '
-        'btnEditar
-        '
-        Me.btnEditar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEditar.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Editar
-        Me.btnEditar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnEditar.FlatAppearance.BorderSize = 0
-        Me.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEditar.Location = New System.Drawing.Point(60, 0)
-        Me.btnEditar.Margin = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.btnEditar.Name = "btnEditar"
-        Me.btnEditar.Size = New System.Drawing.Size(20, 20)
-        Me.btnEditar.TabIndex = 5
-        Me.btnEditar.UseVisualStyleBackColor = True
-        Me.btnEditar.Visible = False
-        '
-        'btnMas
-        '
-        Me.btnMas.BackColor = System.Drawing.Color.White
-        Me.btnMas.BackgroundImage = Global.WR.InterfaceWin.My.Resources.Resources.Mas
-        Me.btnMas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btnMas.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnMas.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnMas.FlatAppearance.BorderSize = 0
-        Me.btnMas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnMas.Location = New System.Drawing.Point(247, 3)
-        Me.btnMas.Margin = New System.Windows.Forms.Padding(0)
-        Me.btnMas.Name = "btnMas"
-        Me.btnMas.Size = New System.Drawing.Size(20, 24)
-        Me.btnMas.TabIndex = 8
-        Me.btnMas.UseVisualStyleBackColor = False
-        '
         'tags
         '
         Me.tags.AutoSize = True
@@ -547,28 +614,33 @@ Partial Class Mensajes
         Me.Controls.Add(Me.splitLista)
         Me.Name = "Mensajes"
         Me.Size = New System.Drawing.Size(808, 495)
+        FlowLayoutPanel1.ResumeLayout(False)
+        panelTop.ResumeLayout(False)
+        panelTop.PerformLayout()
+        CType(Me.MensajeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        flpControles.ResumeLayout(False)
         Me.splitLista.Panel1.ResumeLayout(False)
         Me.splitLista.Panel2.ResumeLayout(False)
         Me.splitLista.Panel2.PerformLayout()
         CType(Me.splitLista, System.ComponentModel.ISupportInitialize).EndInit()
         Me.splitLista.ResumeLayout(False)
         CType(Me.dgvMensajes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MensajeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelBusqueda.ResumeLayout(False)
         Me.panelBusqueda.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.cmsAgregar.ResumeLayout(False)
         Me.panelDetalle.ResumeLayout(False)
+        Me.splitMesajePreview.Panel1.ResumeLayout(False)
+        Me.splitMesajePreview.Panel2.ResumeLayout(False)
+        CType(Me.splitMesajePreview, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.splitMesajePreview.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.panelArchivos.ResumeLayout(False)
         Me.panelArchivos.PerformLayout()
-        FlowLayoutPanel1.ResumeLayout(False)
         CType(Me.dgvArchivos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ArchivosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        panelTop.ResumeLayout(False)
-        panelTop.PerformLayout()
-        flpControles.ResumeLayout(False)
         CType(Me.TagsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -590,11 +662,9 @@ Partial Class Mensajes
     Friend WithEvents SizeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ImageDataGridViewImageColumn As DataGridViewImageColumn
     Friend WithEvents panelArchivos As Panel
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents tags As Etiquetas
     Friend WithEvents panelDetalle As Panel
     Friend WithEvents cbTipo As ComboBox
-    Friend WithEvents Panel2 As Panel
     Friend WithEvents MensajeBindingSource As BindingSource
     Friend WithEvents ArchivosBindingSource As BindingSource
     Friend WithEvents TituloDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
@@ -602,5 +672,13 @@ Partial Class Mensajes
     Friend WithEvents NombreDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TamanoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents splitLista As SplitContainer
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents splitMesajePreview As SplitContainer
+    Private WithEvents txtPreviewWord As RichTextBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents cmsAgregar As ContextMenuStrip
+    Friend WithEvents NuevoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ImportarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ImportarVariosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TagsBindingSource As BindingSource
 End Class

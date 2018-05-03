@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace WR.Models
@@ -8,8 +9,10 @@ namespace WR.Models
         public string Nombre { get; set; } = "Nueva Iglesia";
         public string Direccion { get; set; } = string.Empty;
         public string Localidad { get; set; } = string.Empty;
-        public Lista<Contacto> Contactos { get; set; } = new Lista<Contacto>();
-        public Lista<Mensaje> Mensajes { get; set; } = new Lista<Mensaje>();
+        public List<Contacto> Contactos { get; set; } = new List<Contacto>();
+        public List<Mensaje> Mensajes { get; set; } = new List<Mensaje>();
+
+        public bool TieneContactos => Contactos.Count > 0;
 
         public override bool Equals(Object that)
         {

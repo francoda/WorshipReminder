@@ -1,4 +1,6 @@
-﻿Imports WR.Models
+﻿Imports System.IO
+Imports WR.Models
+Imports Microsoft.Office.Interop.Word
 
 Public Class Mensajes
 
@@ -9,9 +11,8 @@ Public Class Mensajes
         Set(ByVal Editar As Boolean)
             txtTitulo.ReadOnly = Not Editar
             txtTitulo.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
-            If MensajeBindingSource.Current IsNot Nothing AndAlso Not DirectCast(MensajeBindingSource.Current, Mensaje).TieneDescripcion Then
-                txtMensaje.Clear()
-            End If
+            splitMesajePreview.Panel1Collapsed = Not Editar
+            splitMesajePreview.Panel2Collapsed = Editar Or (MensajeBindingSource.Current IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(DirectCast(MensajeBindingSource.Current, Mensaje).Descripcion))
             txtMensaje.ReadOnly = Not Editar
             txtMensaje.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
             panelDetalle.BackColor = IIf(Editar, SystemColors.Window, Color.FromArgb(242, 242, 242))
@@ -20,7 +21,7 @@ Public Class Mensajes
             btnEditar.Visible = Not Editar And dgvMensajes.RowCount > 0
             btnBorrar.Visible = Editar
             btnGuardar.Visible = Editar
-            panelArchivos.Visible = Editar
+            panelArchivos.Visible = Editar Or ArchivosBindingSource.Count > 0
             btnAgregarArchivo.Visible = Editar
             btnBorrarArchivo.Visible = Editar And dgvArchivos.CurrentRow IsNot Nothing
             dgvMensajes.Enabled = Not Editar
@@ -36,9 +37,49 @@ Public Class Mensajes
         PermitirEditar = MensajeBindingSource.Count > 0
     End Sub
 
-    Private Sub btnMas_Click(sender As Object, e As EventArgs) Handles btnMas.Click
+    Private Sub btnMas_Click(sender As Object, e As EventArgs) Handles btnMas.Click, NuevoToolStripMenuItem.Click
         MensajeBindingSource.AddNew()
         PermitirEditar = True
+    End Sub
+
+    Private Sub ImportarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportarToolStripMenuItem.Click
+        Using filesDialog As New OpenFileDialog
+            filesDialog.Multiselect = True
+            filesDialog.Title = "Seleccione los archivos que desea agregar a este mensaje"
+            If filesDialog.ShowDialog() = DialogResult.OK Then
+                MensajeBindingSource.AddNew()
+                PermitirEditar = True
+                For Each file As String In filesDialog.FileNames
+                    If file.Contains(".doc") Or filesDialog.FileNames.Count = 0 Then
+                        txtTitulo.Text = Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Path.GetFileNameWithoutExtension(file).ToLower)
+                    End If
+                    If file.ToLower.Contains("tema") Then
+                        tags.Agregar(Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Path.GetDirectoryName(file).Split("\").Last().ToLower))
+                    End If
+                    ArchivosBindingSource.Add(New Archivo(file))
+                Next
+            End If
+        End Using
+    End Sub
+
+    Private Sub ImportarVariosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportarVariosToolStripMenuItem.Click
+        Using filesDialog As New OpenFileDialog
+            filesDialog.Multiselect = True
+            filesDialog.Title = "Seleccione los archivos que desea agregar a este mensaje"
+            If filesDialog.ShowDialog() = DialogResult.OK Then
+                For Each file As String In filesDialog.FileNames
+                    MensajeBindingSource.AddNew()
+                    PermitirEditar = True
+                    txtTitulo.Text = Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Path.GetFileNameWithoutExtension(file).ToLower)
+                    If file.ToLower.Contains("tema") Then
+                        tags.Agregar(Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Path.GetDirectoryName(file).Split("\").Last().ToLower))
+                    End If
+                    ArchivosBindingSource.Add(New Archivo(file))
+                    PermitirEditar = False
+                    MensajeBindingSource.DataSource.Guardar()
+                Next
+            End If
+        End Using
     End Sub
 
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
@@ -112,11 +153,37 @@ Public Class Mensajes
         End If
     End Sub
 
-    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click, txtBuscar.Validating
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         MensajeBindingSource.Find(cbTipo.Text, txtBuscar.Text)
+    End Sub
+
+    Private Sub txtBuscar_KeyDown(sender As Object, e As KeyEventArgs) Handles txtBuscar.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            MensajeBindingSource.Find(cbTipo.Text, txtBuscar.Text)
+        End If
     End Sub
 
     Private Sub MensajeBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles MensajeBindingSource.CurrentChanged
         splitLista.Panel2Collapsed = MensajeBindingSource.Current Is Nothing
+        If MensajeBindingSource.Current IsNot Nothing AndAlso String.IsNullOrWhiteSpace(DirectCast(MensajeBindingSource.Current, Mensaje).Descripcion) AndAlso DirectCast(MensajeBindingSource.Current, Mensaje).Archivos.Any(Function(x) Path.GetExtension(x.Nombre).Remove(0, 1).ToLower().Contains("doc")) Then
+            Dim descripcionWord As String = String.Empty
+            Dim objNull = Reflection.Missing.Value
+            Dim Doc As Document = New Application().Documents.Open(DirectCast(MensajeBindingSource.Current, Mensaje).Archivos.First(Function(x) Path.GetExtension(x.Nombre).Remove(0, 1).ToLower().Contains("doc")).Ruta, objNull, True, objNull, objNull, objNull, objNull, objNull, objNull, objNull, objNull, objNull, objNull, objNull, objNull)
+            Doc.ActiveWindow.Selection.WholeStory()
+            Doc.ActiveWindow.Selection.Copy()
+            txtPreviewWord.Text = Clipboard.GetDataObject().GetData(DataFormats.Text).ToString()
+            Doc.Close()
+        Else
+            txtPreviewWord.Text = String.Empty
+        End If
+    End Sub
+
+    Private Sub MensajeBindingSource_CurrentItemChanged(sender As Object, e As EventArgs) Handles MensajeBindingSource.CurrentItemChanged
+        tags.AutoCompleteCustomSource.Clear()
+        tags.AutoCompleteCustomSource.AddRange(MensajeBindingSource.Cast(Of Mensaje).SelectMany(Function(x) x.Tags).ToArray)
+    End Sub
+
+    Private Sub ArchivosBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles ArchivosBindingSource.CurrentChanged
+        panelArchivos.Visible = PermitirEditar Or ArchivosBindingSource.Count > 0
     End Sub
 End Class

@@ -25,16 +25,18 @@ Partial Class Etiquetas
         Me.components = New System.ComponentModel.Container()
         Me.txtNewTag = New System.Windows.Forms.TextBox()
         Me.flpTags = New System.Windows.Forms.FlowLayoutPanel()
+        Me.panelNewTag = New System.Windows.Forms.Panel()
         Me.btnAgregar = New System.Windows.Forms.Button()
         Me.tagsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.panelNewTag = New System.Windows.Forms.Panel()
         Me.flpTags.SuspendLayout()
-        CType(Me.tagsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelNewTag.SuspendLayout()
+        CType(Me.tagsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtNewTag
         '
+        Me.txtNewTag.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.txtNewTag.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.txtNewTag.BackColor = System.Drawing.Color.White
         Me.txtNewTag.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtNewTag.Dock = System.Windows.Forms.DockStyle.Fill
@@ -43,7 +45,7 @@ Partial Class Etiquetas
         Me.txtNewTag.Margin = New System.Windows.Forms.Padding(0)
         Me.txtNewTag.MinimumSize = New System.Drawing.Size(0, 15)
         Me.txtNewTag.Name = "txtNewTag"
-        Me.txtNewTag.Size = New System.Drawing.Size(185, 15)
+        Me.txtNewTag.Size = New System.Drawing.Size(185, 13)
         Me.txtNewTag.TabIndex = 0
         '
         'flpTags
@@ -55,6 +57,20 @@ Partial Class Etiquetas
         Me.flpTags.Name = "flpTags"
         Me.flpTags.Size = New System.Drawing.Size(517, 27)
         Me.flpTags.TabIndex = 1
+        '
+        'panelNewTag
+        '
+        Me.panelNewTag.AutoSize = True
+        Me.panelNewTag.BackColor = System.Drawing.Color.White
+        Me.panelNewTag.Controls.Add(Me.txtNewTag)
+        Me.panelNewTag.Controls.Add(Me.btnAgregar)
+        Me.panelNewTag.Location = New System.Drawing.Point(3, 1)
+        Me.panelNewTag.Margin = New System.Windows.Forms.Padding(3, 1, 0, 0)
+        Me.panelNewTag.MinimumSize = New System.Drawing.Size(200, 15)
+        Me.panelNewTag.Name = "panelNewTag"
+        Me.panelNewTag.Padding = New System.Windows.Forms.Padding(1)
+        Me.panelNewTag.Size = New System.Drawing.Size(200, 15)
+        Me.panelNewTag.TabIndex = 10
         '
         'btnAgregar
         '
@@ -77,20 +93,6 @@ Partial Class Etiquetas
         Me.tagsBindingSource.DataMember = "Tags"
         Me.tagsBindingSource.DataSource = GetType(WR.Models.Mensaje)
         '
-        'panelNewTag
-        '
-        Me.panelNewTag.AutoSize = True
-        Me.panelNewTag.BackColor = System.Drawing.Color.White
-        Me.panelNewTag.Controls.Add(Me.txtNewTag)
-        Me.panelNewTag.Controls.Add(Me.btnAgregar)
-        Me.panelNewTag.Location = New System.Drawing.Point(3, 1)
-        Me.panelNewTag.Margin = New System.Windows.Forms.Padding(3, 1, 0, 0)
-        Me.panelNewTag.MinimumSize = New System.Drawing.Size(200, 15)
-        Me.panelNewTag.Name = "panelNewTag"
-        Me.panelNewTag.Padding = New System.Windows.Forms.Padding(1)
-        Me.panelNewTag.Size = New System.Drawing.Size(200, 15)
-        Me.panelNewTag.TabIndex = 10
-        '
         'Etiquetas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -101,9 +103,9 @@ Partial Class Etiquetas
         Me.Size = New System.Drawing.Size(517, 27)
         Me.flpTags.ResumeLayout(False)
         Me.flpTags.PerformLayout()
-        CType(Me.tagsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelNewTag.ResumeLayout(False)
         Me.panelNewTag.PerformLayout()
+        CType(Me.tagsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

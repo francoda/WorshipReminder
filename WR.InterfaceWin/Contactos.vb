@@ -18,7 +18,7 @@ Public Class Contactos
             btnEditarContacto.Visible = Editar And dgvContactos.RowCount > 0
             btnBorrar.Visible = Editar
             btnGuardar.Visible = Editar
-            panelArchivos.Visible = Editar
+            panelContactos.Visible = Editar Or ContactosBindingSource.Count > 0
             btnAgregarContacto.Visible = Editar
             btnBorrarContacto.Visible = Editar And dgvContactos.CurrentRow IsNot Nothing
             dgvIglesias.Enabled = Not Editar
@@ -63,7 +63,7 @@ Public Class Contactos
     End Sub
 
     Private Sub dgvContactos_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles dgvContactos.DataBindingComplete
-        panelArchivos.Visible = PermitirEditar And dgvContactos.RowCount > 0
+        panelContactos.Visible = PermitirEditar And dgvContactos.RowCount > 0
         dgvContactos.Visible = dgvContactos.RowCount > 0
         dgvContactos.Height = (If(dgvContactos.ColumnHeadersVisible, dgvContactos.ColumnHeadersHeight, 0)) + dgvContactos.Rows.OfType(Of DataGridViewRow)().Where(Function(r) r.Visible).Sum(Function(r) r.Height) + 10
     End Sub
@@ -101,7 +101,7 @@ Public Class Contactos
     End Sub
 
     Private Sub txtTitulo_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtTitulo.Validating
-        If IglesiaBindingSource.Current IsNot Nothing AndAlso IglesiaBindingSource.DataSource.Any(Function(x) x.Nombre.Trim.ToLower = txtTitulo.Text.Trim.ToLower) Then
+        If IglesiaBindingSource.List.Cast(Of Iglesia).Any(Function(x) x.Nombre.Trim.ToLower = txtTitulo.Text.Trim.ToLower) Then
             e.Cancel = True
             MsgBox("Ya existe una Iglesia con este nombre.", MsgBoxStyle.Critical, "Cuidado")
         End If
@@ -109,5 +109,9 @@ Public Class Contactos
 
     Private Sub IglesiaBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles IglesiaBindingSource.CurrentChanged
         splitLista.Panel2Collapsed = IglesiaBindingSource.Current Is Nothing
+    End Sub
+
+    Private Sub ContactosBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles ContactosBindingSource.CurrentChanged
+        panelContactos.Visible = PermitirEditar Or ContactosBindingSource.Count > 0
     End Sub
 End Class

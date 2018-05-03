@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Collections;
 
 namespace WR.Models
 {
@@ -66,7 +68,7 @@ namespace WR.Models
             {
                 foreach (string keyWord in key.ToString().Trim().Split(' '))
                 {
-                    if (prop.GetValue(item).ToString().Normalize().Contains(keyWord.ToString().Normalize()))
+                    if ((typeof(IList).IsAssignableFrom(prop.PropertyType) ? ((List<string>)prop.GetValue(item)).Aggregate((x, y) => $"{x}{y}") : prop.GetValue(item)).ToString().ToLower().Normalize().Contains(keyWord.ToString().ToLower().Normalize()))
                         dicValores[item] = (dicValores.TryGetValue(item, out int valor) ? valor : 0) + 1;
                 }
             }
@@ -75,6 +77,7 @@ namespace WR.Models
                 if (item.Value > 0)
                     Add(item.Key);
             }
+            ApplySortCore(prop, ListSortDirection.Descending);
             return -1;
         }
         protected override void ApplySortCore(PropertyDescriptor prop, ListSortDirection direction)
@@ -95,6 +98,8 @@ namespace WR.Models
         }
         private int OnComparison(T lhs, T rhs)
         {
+            if (dicValores.ContainsKey(lhs) && dicValores.ContainsKey(rhs) && dicValores[lhs] != dicValores[rhs])
+                return dicValores[lhs].CompareTo(dicValores[rhs]);
             object lhsValue = lhs == null ? null : _sortProperty.GetValue(lhs);
             object rhsValue = rhs == null ? null : _sortProperty.GetValue(rhs);
             if (lhsValue == null)
